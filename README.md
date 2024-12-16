@@ -1,9 +1,6 @@
 # Install-FastDDS
 Install any version of FastDDS locally and its dependencies
 
-# Install-FastDDS
-Install any version of FastDDS locally and its dependencies
-
 The script installs any version of eProsima's Fast-DDS gloabally via its source code and generates a Fast-DDS example program linked to the installed code. 
 
 **Be aware of relative pathing if the user decides to expand the script. **
