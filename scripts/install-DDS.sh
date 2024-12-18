@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------------------------
 # Purpose:
 # This script installs FastDDS and its related dependencies, builds required libraries,
-# and generates example programs for testing.
+# and generates the fastddsgen example program.
 # =========================================================================================
 
 set -e
@@ -131,7 +131,7 @@ EOF
     sed -i '/find_package/d' CMakeLists.txt
 
     rm -f "$temp_file"
-
+    export LD_LIBRARY_PATH="${install_dir}/lib":$LD_LIBRARY_PATH
     echo "CMakeLists.txt updated successfully."
 }
 
@@ -175,12 +175,12 @@ if [ -n "$VERSION" ]; then
         build_and_install "$REPO" "../${REPO}"
     done
     
-    check_java
     generate_example_idl
     run_fastddsgen
     update_cmakelists
     
     echo
     echo "Installation and setup of FastDDS, FastCDR, and foonathan memory completed."
+    echo "Installation location: ${HOME}/${VERSION}"
     echo "Example program generated ..."
 fi
