@@ -12,14 +12,15 @@
 set -e
 
 usage() {
-    echo "Usage: $(basename $0) [OPTIONS]"
-    echo
-    echo "This script installs FastDDS and related dependencies."
-    echo
-    echo "Options:"
-    echo " -v : Specifies a version of FastDDS to install"
-    echo " -c : Clones Fast-DDS, Fast-CDR, Foonathan memory, Fast-DDS-Gen "
-    echo " -h : Shows usage"
+    cat >&2 <<EOF
+Usage: $(basename "$0") [OPTIONS]
+
+Options:
+  -v : Specifies a version of FastDDS to install
+  -c : Clones Fast-DDS, Fast-CDR, Foonathan memory, Fast-DDS-Gen
+  -h : Shows usage
+EOF
+    exit 1
 }
 
 validate_version() {
@@ -147,15 +148,10 @@ while getopts 'hcv:' opt; do
             CLONE=1
             ;;
         v)
-            VERSION=$OPTARG
+            VERSION=${OPTARG}
             ;;
-        h)
+        *|h)
             usage
-            exit 0;
-            ;;
-        *)
-            usage
-            exit 1;
             ;;
     esac
 done
